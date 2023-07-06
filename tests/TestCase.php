@@ -1,5 +1,6 @@
 <?php
 
+namespace SmashedEgg\LaravelAuthRouteBindings\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
