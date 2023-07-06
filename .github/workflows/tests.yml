@@ -39,5 +39,12 @@ jobs:
         run: |
           composer require "illuminate/contracts=^${{ matrix.laravel }}" --no-update
           composer update --prefer-dist --no-interaction --no-progress
+      - name: Create SQLite database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
       - name: Execute tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
         run: bin/phpunit --verbose
