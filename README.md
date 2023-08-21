@@ -25,6 +25,33 @@ Route::get('posts/{id}', function ($id) {
 });
 ```
 
+or using Policies:
+
+```php
+<?php
+ 
+namespace App\Policies;
+ 
+use App\Models\Post;
+use App\Models\User;
+ 
+class PostPolicy
+{
+    /**
+     * Determine if the given post can be updated by the user.
+     */
+    public function update(User $user, Post $post): bool
+    {
+        return $user->id === $post->user_id;
+    }
+}
+```
+
+Policies have the disadvantage of returning data from the database, hydrating a model, then comparing, 
+and in the case where the user doesn't have access to it, its then thrown away.
+
+This package has the added benefit whereby the logic is done all at the database level.
+
 ## Requirements
 
 * PHP 8.0.2+
