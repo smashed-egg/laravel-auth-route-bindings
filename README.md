@@ -3,6 +3,9 @@
 </p>
 
 # Laravel Auth Route Bindings
+[![Latest Stable Version](https://poser.pugx.org/smashed-egg/laravel-auth-route-bindings/v/stable)](https://github.com/smashed-egg/laravel-auth-route-bindings/releases)
+[![Downloads this Month](https://img.shields.io/packagist/dm/smashed-egg/laravel-auth-route-bindings.svg)](https://packagist.org/packages/smashed-egg/laravel-auth-route-bindings)
+
 
 This package allows you to create route model bindings that also use the authenticated user to retrieve the model.
 
@@ -64,6 +67,16 @@ To install this package please run:
 ```
 composer require smashed-egg/laravel-auth-route-bindings
 ```
+
+[Support Me](https://github.com/sponsors/tomgrohl)
+--------------------------------------------
+
+Do you like this package? Does it improve you're development. Consider sponsoring to help with future development.
+
+[Buy me a coffee!](https://github.com/sponsors/tomgrohl)
+
+Thank you!
+
 ## Usage
 
 You should define your model bindings at the beginning of the boot method of your RouteServiceProvider.
