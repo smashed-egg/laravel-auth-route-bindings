@@ -3,13 +3,13 @@
     "description": "Adds support for creating Route Model bindings to an authenticated user in Laravel",
     "require": {
         "php": "^8.0.2",
-        "illuminate/console": "^9.21|^10.0",
-        "illuminate/contracts": "^9.21|^10.0",
-        "illuminate/support": "^9.21|^10.0"
+        "illuminate/console": "^9.21|^10.0|^11.0",
+        "illuminate/contracts": "^9.21|^10.0|^11.0",
+        "illuminate/support": "^9.21|^10.0|^11.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^7.6|^8.0",
-        "phpunit/phpunit": "^9.5"
+        "orchestra/testbench": "^7.6|^8.0|^9.0",
+        "phpunit/phpunit": "^9.5|^10.0"
 
     },
     "license": "MIT",
