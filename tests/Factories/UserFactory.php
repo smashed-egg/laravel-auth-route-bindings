@@ -12,7 +12,7 @@ use SmashedEgg\LaravelAuthRouteBindings\Tests\Models\User;
 class UserFactory extends Factory
 {
     /**
-     * @var string
+     * @var class-string<User>
      */
     protected $model = User::class;
 
@@ -34,8 +34,6 @@ class UserFactory extends Factory
 
     /**
      * Indicate that the model's email address should be unverified.
-     *
-     * @return $this
      */
     public function unverified(): static
     {

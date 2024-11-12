@@ -12,7 +12,7 @@ use SmashedEgg\LaravelAuthRouteBindings\Tests\Models\Post;
 class CommentFactory extends Factory
 {
     /**
-     * @var string
+     * @var class-string<Comment>
      */
     protected $model = Comment::class;
 
@@ -30,8 +30,6 @@ class CommentFactory extends Factory
 
     /**
      * Indicate that the model's email address should be unverified.
-     *
-     * @return $this
      */
     public function forPost(Post $post): static
     {

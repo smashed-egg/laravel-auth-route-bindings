@@ -2,8 +2,8 @@
 
 namespace SmashedEgg\LaravelAuthRouteBindings\Tests\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use SmashedEgg\LaravelAuthRouteBindings\Tests\Factories\CommentFactory;
 
 class Comment extends Model
@@ -20,7 +20,7 @@ class Comment extends Model
         'post_id',
     ];
 
-    protected static function newFactory()
+    protected static function newFactory(): CommentFactory
     {
         return new CommentFactory();
     }

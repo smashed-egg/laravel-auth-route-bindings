@@ -2,8 +2,9 @@
 
 namespace SmashedEgg\LaravelAuthRouteBindings\Tests\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use SmashedEgg\LaravelAuthRouteBindings\Tests\Factories\PostFactory;
 
 class Post extends Model
@@ -21,12 +22,15 @@ class Post extends Model
         'user_id',
     ];
 
-    public function comments()
+    /**
+     * @return HasMany<Comment>
+     */
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
-    protected static function newFactory()
+    protected static function newFactory(): PostFactory
     {
         return new PostFactory();
     }

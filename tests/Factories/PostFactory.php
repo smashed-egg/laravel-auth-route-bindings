@@ -7,12 +7,12 @@ use SmashedEgg\LaravelAuthRouteBindings\Tests\Models\Post;
 use SmashedEgg\LaravelAuthRouteBindings\Tests\Models\User;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\SmashedEgg\LaravelAuthRouteBindings\Tests\Models\Post>
+ * @extends Factory<Post>
  */
 class PostFactory extends Factory
 {
     /**
-     * @var string
+     * @var class-string<Post>
      */
     protected $model = Post::class;
 
@@ -31,8 +31,6 @@ class PostFactory extends Factory
 
     /**
      * Indicate that the model's email address should be unverified.
-     *
-     * @return $this
      */
     public function forUser(User $user): static
     {

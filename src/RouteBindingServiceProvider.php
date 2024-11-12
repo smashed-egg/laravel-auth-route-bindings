@@ -7,14 +7,14 @@ use Illuminate\Support\ServiceProvider;
 
 class RouteBindingServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->registerRouteBindings();
     }
 
-    protected function registerRouteBindings()
+    protected function registerRouteBindings(): void
     {
-        Route::macro('modelAuth', function(
+        Route::macro('modelAuth', function (
             string $binding,
             string $className,
             ?string $userForeignKey = 'user_id',
@@ -26,7 +26,6 @@ class RouteBindingServiceProvider extends ServiceProvider
                 $userForeignKey,
                 $field
             ) {
-
                 $field = $route->bindingFieldFor($binding) ?: $field;
 
                 $modelClass = app()->make($className);
@@ -38,7 +37,5 @@ class RouteBindingServiceProvider extends ServiceProvider
                 ;
             });
         });
-
     }
-
 }

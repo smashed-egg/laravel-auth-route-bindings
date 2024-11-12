@@ -10,18 +10,15 @@ use SmashedEgg\LaravelAuthRouteBindings\Tests\Models\Comment;
 use SmashedEgg\LaravelAuthRouteBindings\Tests\Models\Post;
 use SmashedEgg\LaravelAuthRouteBindings\Tests\Models\User;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class MacroTest extends TestCase
 {
     use DatabaseMigrations;
     use DatabaseTransactions;
-
-    protected function getPackageProviders($app)
-    {
-        return [
-            TestingServiceProvider::class,
-            RouteBindingServiceProvider::class,
-        ];
-    }
 
     protected function setUp(): void
     {
@@ -29,12 +26,12 @@ class MacroTest extends TestCase
         Route::modelAuth('userPost', Post::class);
     }
 
-    public function testMacroExists()
+    public function testMacroExists(): void
     {
         $this->assertTrue(Route::hasMacro('modelAuth'));
     }
 
-    public function testMacroWorksForUser()
+    public function testMacroWorksForUser(): void
     {
         $user = User::factory()->createOne();
         $user2 = User::factory()->createOne();
@@ -44,7 +41,7 @@ class MacroTest extends TestCase
 
         $unitTest = $this;
 
-        Route::group(['middleware' => 'web'], function() use ($post, $unitTest)  {
+        Route::group(['middleware' => 'web'], function () use ($post, $unitTest) {
             Route::get('posts/{userPost}', function (Post $userPost) use ($post, $unitTest) {
                 $unitTest->assertEquals($post->getKey(), $userPost->getKey());
             });
@@ -52,14 +49,14 @@ class MacroTest extends TestCase
 
         $this->actingAs($user, 'web');
 
-        $response = $this->get('posts/' . $post->getKey());
+        $response = $this->get('posts/'.$post->getKey());
         $response->assertOk();
 
-        $response2 = $this->get('posts/' . $post2->getKey());
+        $response2 = $this->get('posts/'.$post2->getKey());
         $response2->assertNotFound();
     }
 
-    public function testMacroWorksForUserAndScopedBindings()
+    public function testMacroWorksForUserAndScopedBindings(): void
     {
         $user = User::factory()->createOne();
         $post = Post::factory()->forUser($user)->createOne();
@@ -67,7 +64,7 @@ class MacroTest extends TestCase
 
         $unitTest = $this;
 
-        Route::group(['middleware' => 'web'], function() use ($unitTest, $factoryComment)  {
+        Route::group(['middleware' => 'web'], function () use ($unitTest, $factoryComment) {
             Route::get('posts/{post}/comments/{comment}', function (Post $post, Comment $comment) use ($unitTest, $factoryComment) {
                 $unitTest->assertEquals($factoryComment->getKey(), $comment->getKey());
             })->scopeBindings();
@@ -75,7 +72,18 @@ class MacroTest extends TestCase
 
         $this->actingAs($user, 'web');
 
-        $response = $this->get('posts/' . $post->getKey() . '/comments/' . $factoryComment->getKey());
+        $response = $this->get('posts/'.$post->getKey().'/comments/'.$factoryComment->getKey());
         $response->assertOk();
+    }
+
+    /**
+     * @return list<non-empty-string>
+     */
+    protected function getPackageProviders($app): array
+    {
+        return [
+            TestingServiceProvider::class,
+            RouteBindingServiceProvider::class,
+        ];
     }
 }

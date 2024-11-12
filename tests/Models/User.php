@@ -9,7 +9,8 @@ use SmashedEgg\LaravelAuthRouteBindings\Tests\Factories\UserFactory;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -41,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected static function newFactory()
+    protected static function newFactory(): UserFactory
     {
         return new UserFactory();
     }
