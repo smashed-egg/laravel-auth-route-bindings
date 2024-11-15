@@ -1,0 +1,25 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "@PhpCsFixer": true,
+    "yoda_style": true,
+    "not_operator_with_space": true,
+    "single_line_comment_style": {
+      "comment_types": [
+        "hash"
+      ]
+    },
+    "concat_space": {
+      "spacing": "one"
+    },
+    "new_with_braces": {
+      "anonymous_class": true,
+      "named_class": true
+    },
+    "braces_position": {
+      "anonymous_classes_opening_brace": [
+        "next_line_unless_newline_at_signature_end"
+      ]
+    }
+  }
+}

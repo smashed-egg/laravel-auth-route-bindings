@@ -1,0 +1,10 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+parameters:
+    excludePaths:
+        analyseAndScan:
+            - */*.blade.php
+    level: max
+    paths:
+        - src
+        - tests
