@@ -2,6 +2,8 @@
 
 namespace SmashedEgg\LaravelAuthRouteBindings;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -9,33 +11,37 @@ class RouteBindingServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->registerRouteBindings();
+        Route::macro('modelAuth', [$this, 'modelAuthHandler']);
     }
 
-    protected function registerRouteBindings(): void
-    {
-        Route::macro('modelAuth', function (
-            string $binding,
-            string $className,
-            ?string $userForeignKey = 'user_id',
-            ?string $field = 'id'
+    /**
+     * @param class-string<Model> $className
+     */
+    public static function modelAuthHandler(
+        string $binding,
+        string $className,
+        ?string $userForeignKey = 'user_id',
+        ?string $field = 'id'
+    ): void {
+        Route::bind($binding, function ($value, \Illuminate\Routing\Route $route) use (
+            $binding,
+            $className,
+            $userForeignKey,
+            $field
         ) {
-            Route::bind($binding, function ($value, \Illuminate\Routing\Route $route) use (
-                $binding,
-                $className,
-                $userForeignKey,
-                $field
-            ) {
-                $field = $route->bindingFieldFor($binding) ?: $field;
+            if ( ! auth()->user()) {
+                throw (new ModelNotFoundException())->setModel($className);
+            }
 
-                $modelClass = app()->make($className);
+            $field = $route->bindingFieldFor($binding) ?: $field;
 
-                return $modelClass::query()
-                    ->where($field, $value)
-                    ->where($userForeignKey, auth()->user()->getAuthIdentifier())
-                    ->firstOrFail()
-                ;
-            });
+            $modelClass = app()->make($className);
+
+            return $modelClass::query()
+                ->where($field, $value)
+                ->where($userForeignKey, auth()->user()->getAuthIdentifier())
+                ->firstOrFail()
+            ;
         });
     }
 }

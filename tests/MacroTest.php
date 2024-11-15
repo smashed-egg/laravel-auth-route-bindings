@@ -77,6 +77,8 @@ class MacroTest extends TestCase
     }
 
     /**
+     * @param mixed $app
+     *
      * @return list<non-empty-string>
      */
     protected function getPackageProviders($app): array
