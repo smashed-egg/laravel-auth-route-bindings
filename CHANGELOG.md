@@ -1,5 +1,7 @@
 # Release Notes
 
+1.4.0 - Add support for Laravel 13
+
 1.3.0 - Add support for Laravel 12 and PHP 8.5
 
 1.2.0 - Add support for Laravel 12 and PHP 8.4
