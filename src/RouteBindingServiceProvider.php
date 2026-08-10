@@ -2,6 +2,7 @@
 
 namespace SmashedEgg\LaravelAuthRouteBindings;
 
+use http\Exception\InvalidArgumentException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,19 @@ class RouteBindingServiceProvider extends ServiceProvider
 
             $field = $route->bindingFieldFor($binding) ?: $field;
 
+            if ( ! $field) {
+                throw new InvalidArgumentException("Field '{$field}' is required");
+            }
+
+            if ( ! $value) {
+                throw new InvalidArgumentException("Value is required");
+            }
+
+            if ( ! $userForeignKey) {
+                throw new InvalidArgumentException("Missing user");
+            }
+
+            /** @var Model $modelClass */
             $modelClass = app()->make($className);
 
             return $modelClass::query()

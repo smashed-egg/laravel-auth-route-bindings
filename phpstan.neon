@@ -8,3 +8,5 @@ parameters:
     paths:
         - src
         - tests
+    ignoreErrors:
+        - '#Call to an undefined static method Illuminate\\Support\\Facades\\Route::modelAuth\(\)#'

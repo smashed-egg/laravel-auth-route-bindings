@@ -8,12 +8,13 @@ use SmashedEgg\LaravelAuthRouteBindings\Tests\Factories\CommentFactory;
 
 class Comment extends Model
 {
+    /** @use HasFactory<\SmashedEgg\LaravelAuthRouteBindings\Tests\Factories\CommentFactory> */
     use HasFactory;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'comment',

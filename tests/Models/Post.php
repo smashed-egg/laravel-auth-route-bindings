@@ -9,12 +9,13 @@ use SmashedEgg\LaravelAuthRouteBindings\Tests\Factories\PostFactory;
 
 class Post extends Model
 {
+    /** @use HasFactory<\SmashedEgg\LaravelAuthRouteBindings\Tests\Factories\PostFactory> */
     use HasFactory;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'name',
@@ -23,7 +24,7 @@ class Post extends Model
     ];
 
     /**
-     * @return HasMany<Comment>
+     * @return HasMany<Comment, $this>
      */
     public function comments(): HasMany
     {

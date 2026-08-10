@@ -9,13 +9,14 @@ use SmashedEgg\LaravelAuthRouteBindings\Tests\Factories\UserFactory;
 
 class User extends Authenticatable
 {
+    /** @use HasFactory<\SmashedEgg\LaravelAuthRouteBindings\Tests\Factories\UserFactory> */
     use HasFactory;
     use Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'name',
@@ -26,7 +27,7 @@ class User extends Authenticatable
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $hidden = [
         'password',

@@ -1,5 +1,10 @@
 # Release Notes
 
+1.4.1 
+- Update dependencies.
+- Fix pint.json after updating dependencies.
+- Fix PHPStan issues.
+
 1.4.0 - Add support for Laravel 13
 
 1.3.0 - Add support for Laravel 12 and PHP 8.5

@@ -1,7 +1,6 @@
 {
   "preset": "laravel",
   "rules": {
-    "@PhpCsFixer": true,
     "yoda_style": true,
     "not_operator_with_space": true,
     "single_line_comment_style": {
@@ -9,17 +8,41 @@
         "hash"
       ]
     },
+    "php_unit_method_casing": {
+      "case": "camel_case"
+    },
     "concat_space": {
       "spacing": "one"
     },
-    "new_with_braces": {
+    "spaces_inside_parentheses": {
+      "space": "none"
+    },
+    "unary_operator_spaces": false,
+    "fully_qualified_strict_types": false,
+    "phpdoc_align": {
+      "align": "left",
+      "spacing": 1,
+      "tags": [
+        "method",
+        "param",
+        "property",
+        "return",
+        "throws",
+        "type",
+        "var"
+      ]
+    },
+    "multiline_whitespace_before_semicolons": {
+      "strategy": "new_line_for_chained_calls"
+    },
+    "new_with_parentheses": {
       "anonymous_class": true,
       "named_class": true
     },
     "braces_position": {
-      "anonymous_classes_opening_brace": [
-        "next_line_unless_newline_at_signature_end"
-      ]
+      "allow_single_line_anonymous_functions": true,
+      "allow_single_line_empty_anonymous_classes": true,
+      "anonymous_classes_opening_brace": "same_line"
     }
   }
 }

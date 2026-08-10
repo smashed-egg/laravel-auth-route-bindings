@@ -49,10 +49,17 @@ class MacroTest extends TestCase
 
         $this->actingAs($user, 'web');
 
-        $response = $this->get('posts/'.$post->getKey());
+        /** @var int $postId */
+        $postId = $post->getKey();
+
+        /** @var int $postId2 */
+        $postId2 = $post2->getKey();
+
+
+        $response = $this->get('posts/' . $postId);
         $response->assertOk();
 
-        $response2 = $this->get('posts/'.$post2->getKey());
+        $response2 = $this->get('posts/' . $postId2);
         $response2->assertNotFound();
     }
 
@@ -72,13 +79,18 @@ class MacroTest extends TestCase
 
         $this->actingAs($user, 'web');
 
-        $response = $this->get('posts/'.$post->getKey().'/comments/'.$factoryComment->getKey());
+        /** @var int $postId */
+        $postId = $post->getKey();
+
+        /** @var int $commentId */
+        $commentId = $factoryComment->getKey();
+
+        $response = $this->get('posts/' . $postId . '/comments/' . $commentId);
         $response->assertOk();
     }
 
     /**
      * @param mixed $app
-     *
      * @return list<non-empty-string>
      */
     protected function getPackageProviders($app): array
